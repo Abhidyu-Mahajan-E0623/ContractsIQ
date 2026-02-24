@@ -438,16 +438,46 @@ function initCharts() {
     // Vendor Chart
     const vendorCtx = document.getElementById('vendorChart');
     if (vendorCtx) {
+        const vendorValues = syntheticData.spendByVendor.map(v => v.value);
+
+        // Custom plugin: draw gray background bar on hovered row only
+        const hoverBgPlugin = {
+            id: 'hoverBackground',
+            afterDatasetsDraw(chart) {
+                const active = chart.getActiveElements();
+                if (!active.length) return;
+                const { ctx } = chart;
+                const meta = chart.getDatasetMeta(0);
+                const idx = active[0].index;
+                const bar = meta.data[idx];
+                const xScale = chart.scales.x;
+                const maxX = xScale.getPixelForValue(xScale.max);
+
+                ctx.save();
+                ctx.fillStyle = '#e5e7eb';
+                const barRight = bar.x;
+                const barHeight = bar.height;
+                const barY = bar.y - barHeight / 2;
+                if (maxX > barRight) {
+                    ctx.beginPath();
+                    ctx.roundRect(barRight, barY, maxX - barRight, barHeight, [0, 4, 4, 0]);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        };
+
         new Chart(vendorCtx, {
             type: 'bar',
+            plugins: [hoverBgPlugin],
             data: {
                 labels: syntheticData.spendByVendor.map(v => v.name),
                 datasets: [{
                     label: 'Spend',
-                    data: syntheticData.spendByVendor.map(v => v.value),
-                    backgroundColor: '#ea580c', // Using the orange from the original UI to pop against Navy
+                    data: vendorValues,
+                    backgroundColor: '#ea580c',
                     borderRadius: 4,
-                    barPercentage: 0.7
+                    barPercentage: 0.9
                 }]
             },
             options: {
@@ -457,16 +487,24 @@ function initCharts() {
                 plugins: {
                     legend: { display: false },
                     tooltip: {
+                        backgroundColor: 'white',
+                        borderColor: '#e2e8f0',
+                        borderWidth: 1,
+                        titleColor: '#0f172a',
+                        titleFont: { weight: 600, size: 13 },
+                        bodyColor: '#ea580c',
+                        bodyFont: { weight: 500, size: 12 },
+                        padding: 10,
+                        cornerRadius: 6,
+                        displayColors: false,
                         callbacks: {
+                            title: function (items) {
+                                return items[0]?.label || '';
+                            },
                             label: function (context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.x !== null) {
-                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(context.parsed.x);
-                                }
-                                return label;
+                                const val = context.parsed.x;
+                                const formatted = val >= 1000000 ? '$' + (val / 1e6).toFixed(1) + 'M' : '$' + (val / 1000).toFixed(0) + 'K';
+                                return 'spend : ' + formatted;
                             }
                         }
                     }
