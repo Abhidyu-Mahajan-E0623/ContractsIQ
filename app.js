@@ -2546,12 +2546,31 @@ function initChatbot() {
     const fab = document.getElementById('chatbot-fab');
     const panel = document.getElementById('chatbot-panel');
     const closeBtn = document.getElementById('chatbot-close');
+    const clearBtn = document.getElementById('chatbot-clear');
     const sendBtn = document.getElementById('chatbot-send');
     const input = document.getElementById('chatbot-input');
     const typing = document.getElementById('chatbot-typing');
     const messages = document.getElementById('chatbot-messages');
 
     if (!fab || !panel) return;
+
+    // Clear chat
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            chatHistory = [];
+            if (messages) {
+                messages.innerHTML = `
+                    <div class="chat-msg assistant" style="display:flex; gap:0.5rem; align-items:flex-start;">
+                        <div style="width:28px; height:28px; background:linear-gradient(135deg,#ea580c,#f97316); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
+                            <i class="fa-solid fa-sparkles" style="color:white; font-size:0.65rem;"></i>
+                        </div>
+                        <div style="background:white; border:1px solid #e5e7eb; border-radius:12px 12px 12px 2px; padding:0.65rem 0.85rem; font-size:0.83rem; line-height:1.55; color:#1e293b; max-width:88%; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+                            👋 Hi! I'm your Contract AI Assistant. Ask me anything about your contracts, vendors, spend, or budget.
+                        </div>
+                    </div>`;
+            }
+        });
+    }
 
     // Toggle panel
     fab.addEventListener('click', () => {
