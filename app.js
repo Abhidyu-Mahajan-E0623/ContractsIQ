@@ -168,7 +168,7 @@ function renderDashboard() {
                 <p>Real-time visibility into commitments, risks, and spend</p>
             </div>
             <div class="search-container">
-                <svg class="search-icon" style="color: #f59e0b;" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9.937 6.297c.197-.59 1.03-.59 1.227 0l.867 2.603a.647.647 0 0 0 .412.41l2.603.868c.59.197.59 1.03 0 1.227l-2.603.867a.647.647 0 0 0-.411.412l-.868 2.603c-.197.59-1.03.59-1.227 0l-.867-2.603a.647.647 0 0 0-.412-.412l-2.603-.867c-.59-.197-.59-1.03 0-1.227l2.603-.867a.647.647 0 0 0 .412-.411l.867-2.603Zm7.27-2.598c.132-.396.69-.396.82 0l.443 1.33c.05.15.166.267.316.316l1.33.443c.395.132.395.69 0 .821l-1.33.443a.432.432 0 0 0-.316.316l-.443 1.33c-.13.395-.688.395-.82 0l-.443-1.33a.432.432 0 0 0-.316-.316l-1.33-.443c-.395-.131-.395-.69 0-.82l1.33-.444a.432.432 0 0 0 .316-.316l.443-1.33Zm-1.834 11.142c.132-.396.69-.396.82 0l.443 1.33c.05.15.166.267.316.316l1.33.443c.396.132.396.69 0 .821l-1.33.443a.432.432 0 0 0-.316.317l-.443 1.33c-.13.395-.688.395-.82 0l-.443-1.33a.432.432 0 0 0-.316-.317l-1.33-.443c-.395-.13-.395-.689 0-.82l1.33-.444a.432.432 0 0 0 .316-.316l.443-1.33Z"/></svg>
+                <svg class="search-icon" style="color: #0052B3;" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9.937 6.297c.197-.59 1.03-.59 1.227 0l.867 2.603a.647.647 0 0 0 .412.41l2.603.868c.59.197.59 1.03 0 1.227l-2.603.867a.647.647 0 0 0-.411.412l-.868 2.603c-.197.59-1.03.59-1.227 0l-.867-2.603a.647.647 0 0 0-.412-.412l-2.603-.867c-.59-.197-.59-1.03 0-1.227l2.603-.867a.647.647 0 0 0 .412-.411l.867-2.603Zm7.27-2.598c.132-.396.69-.396.82 0l.443 1.33c.05.15.166.267.316.316l1.33.443c.395.132.395.69 0 .821l-1.33.443a.432.432 0 0 0-.316.316l-.443 1.33c-.13.395-.688.395-.82 0l-.443-1.33a.432.432 0 0 0-.316-.316l-1.33-.443c-.395-.131-.395-.69 0-.82l1.33-.444a.432.432 0 0 0 .316-.316l.443-1.33Zm-1.834 11.142c.132-.396.69-.396.82 0l.443 1.33c.05.15.166.267.316.316l1.33.443c.396.132.396.69 0 .821l-1.33.443a.432.432 0 0 0-.316.317l-.443 1.33c-.13.395-.688.395-.82 0l-.443-1.33a.432.432 0 0 0-.316-.317l-1.33-.443c-.395-.13-.395-.689 0-.82l1.33-.444a.432.432 0 0 0 .316-.316l.443-1.33Z"/></svg>
                 <input type="text" class="search-input" placeholder="Ask anything about your contracts..." id="dashboard-search">
                 <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted); font-size: 0.9rem; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); pointer-events: none;"></i>
                 <div class="search-suggestions" id="search-suggestions">
@@ -200,7 +200,7 @@ function renderDashboard() {
                     <div><span style="color:#22c55e;">●</span> Active <strong>${syntheticData.contractStatus.active}</strong></div>
                     <div><span style="color:#f59e0b;">●</span> Expiring <strong>${syntheticData.contractStatus.expiring}</strong></div>
                     <div><span style="color:#ef4444;">●</span> Expired <strong>${syntheticData.contractStatus.expired}</strong></div>
-                    <div><span style="color:#f59e0b;">●</span> Draft <strong>${syntheticData.contractStatus.draft}</strong></div>
+                    <div><span style="color:#0052B3;">●</span> Draft <strong>${syntheticData.contractStatus.draft}</strong></div>
                 </div>
             </div>
         </div>
@@ -370,7 +370,7 @@ function initDashboardUI() {
                 </div>
                 <div style="text-align: right;">
                     <div style="font-size: 0.9rem; font-weight: 700; color: var(--primary-color);">${c.value}</div>
-                    <span style="font-size: 0.7rem; font-weight: 600; padding: 1px 8px; border-radius: 8px; background: ${c.status === 'Active' ? '#dcfce7' : '#fff7ed'}; color: ${c.status === 'Active' ? '#16a34a' : '#ea580c'};">${c.status}</span>
+                    <span style="font-size: 0.7rem; font-weight: 600; padding: 1px 8px; border-radius: 8px; background: ${c.status === 'Active' ? '#dcfce7' : c.status === 'Expiring' ? '#fef3c7' : '#e0e7ff'}; color: ${c.status === 'Active' ? '#16a34a' : c.status === 'Expiring' ? '#d97706' : '#3b82f6'};">${c.status}</span>
                 </div>
             </div>
         `).join('') : '';
@@ -475,7 +475,7 @@ function initCharts() {
                 datasets: [{
                     label: 'Spend',
                     data: vendorValues,
-                    backgroundColor: '#ea580c',
+                    backgroundColor: '#0052B3',
                     borderRadius: 4,
                     barPercentage: 0.9
                 }]
@@ -492,7 +492,7 @@ function initCharts() {
                         borderWidth: 1,
                         titleColor: '#0f172a',
                         titleFont: { weight: 600, size: 13 },
-                        bodyColor: '#ea580c',
+                        bodyColor: '#0052B3',
                         bodyFont: { weight: 500, size: 12 },
                         padding: 10,
                         cornerRadius: 6,
@@ -548,7 +548,7 @@ function initCharts() {
                         '#22c55e', // green - Active
                         '#f59e0b', // amber - Expiring
                         '#ef4444', // red - Expired
-                        '#3b82f6'  // blue - Draft
+                        '#0052B3'  // blue - Draft
                     ],
                     borderWidth: 0,
                     hoverOffset: 4
@@ -620,7 +620,7 @@ function renderContracts() {
             <td>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                     <div style="width: 50px; height: 6px; background: var(--bg-color); border-radius: 3px;">
-                        <div style="width: ${(c.remaining / c.value) * 100}%; height: 100%; background: #ea580c; border-radius: 3px;"></div>
+                        <div style="width: ${(c.remaining / c.value) * 100}%; height: 100%; background: #0052B3; border-radius: 3px;"></div>
                     </div>
                     <span style="font-size: 0.75rem;">$${(c.remaining >= 1000000 ? (c.remaining / 1000000).toFixed(1) + 'M' : (c.remaining / 1000).toFixed(0) + 'K')}</span>
                 </div>
@@ -637,7 +637,7 @@ function renderContracts() {
                 <h1>Contracts</h1>
                 <p>${syntheticData.contractsData.length} contracts managed</p>
             </div>
-            <button id="open-upload-btn" style="background: #ea580c; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; box-shadow: var(--shadow-sm);">
+            <button id="open-upload-btn" style="background: #0052B3; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; box-shadow: var(--shadow-sm);">
                 <i class="fa-solid fa-arrow-up-from-bracket"></i> Upload Contract
             </button>
         </div>
@@ -680,7 +680,7 @@ function renderContracts() {
     ).join('')}
                         </select>
                         ${contractFilterVendor !== 'All Vendors' ? `
-                        <button id="vendor-360-btn" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1.5px solid #ea580c; background: white; color: #ea580c; font-family: var(--font-family); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s;">
+                        <button id="vendor-360-btn" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1.5px solid #0052B3; background: white; color: #0052B3; font-family: var(--font-family); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s;">
                             <i class="fa-solid fa-building" style="font-size: 0.75rem;"></i> Vendor 360° View
                         </button>` : ''}
                     </div>
@@ -868,8 +868,8 @@ function renderVendor360(vendorName, container) {
 
         <!-- Vendor Header -->
         <div class="card" style="padding: 1.5rem 2rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
-            <div style="width: 56px; height: 56px; background: #fff7ed; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                <i class="fa-solid fa-building" style="color: #ea580c; font-size: 1.4rem;"></i>
+            <div style="width: 56px; height: 56px; background: #EAF3FF; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i class="fa-solid fa-building" style="color: #0052B3; font-size: 1.4rem;"></i>
             </div>
             <div style="flex: 1;">
                 <h1 style="margin: 0; font-size: 1.5rem;">${vendorName}</h1>
@@ -883,7 +883,7 @@ function renderVendor360(vendorName, container) {
             <div style="display: flex; gap: 2.5rem; text-align: center;">
                 <div>
                     <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase;">Total Spend</div>
-                    <div style="font-size: 1.4rem; font-weight: 700; color: #ea580c;">${fmt(totalSpend)}</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: #0052B3;">${fmt(totalSpend)}</div>
                 </div>
                 <div>
                     <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase;">Contracts</div>
@@ -891,7 +891,7 @@ function renderVendor360(vendorName, container) {
                 </div>
                 <div>
                     <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase;">Remaining</div>
-                    <div style="font-size: 1.4rem; font-weight: 700; color: #ea580c;">${fmt(totalRemaining)}</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: #0052B3;">${fmt(totalRemaining)}</div>
                 </div>
             </div>
         </div>
@@ -911,8 +911,8 @@ function renderVendor360(vendorName, container) {
             </div>
             <div class="card" style="padding: 1.25rem;">
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <div style="width: 36px; height: 36px; background: #fff7ed; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-triangle-exclamation" style="color: #ea580c; font-size: 0.85rem;"></i>
+                    <div style="width: 36px; height: 36px; background: #EAF3FF; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: #0052B3; font-size: 0.85rem;"></i>
                     </div>
                     <div>
                         <div style="font-size: 0.78rem; color: var(--text-muted);">Expiring</div>
@@ -922,8 +922,8 @@ function renderVendor360(vendorName, container) {
             </div>
             <div class="card" style="padding: 1.25rem;">
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <div style="width: 36px; height: 36px; background: #fef3c7; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-users" style="color: #d97706; font-size: 0.85rem;"></i>
+                    <div style="width: 36px; height: 36px; background: #DCEBFF; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-users" style="color: #1E5CC4; font-size: 0.85rem;"></i>
                     </div>
                     <div>
                         <div style="font-size: 0.78rem; color: var(--text-muted);">Products</div>
@@ -964,7 +964,7 @@ function renderVendor360(vendorName, container) {
                     ${[
             ['Avg Contract Value', fmt(avgContractValue)],
             ['Avg Duration', avgDuration + ' months'],
-            ['Auto-Renew', autoRenewContracts.length > 0 ? '<span style="color:#ea580c; font-weight:600;">Yes — Monitor</span>' : 'No'],
+            ['Auto-Renew', autoRenewContracts.length > 0 ? '<span style="color:#0052B3; font-weight:600;">Yes — Monitor</span>' : 'No'],
             ['Billing Models', billingModels.join(', ') || '—'],
             ['Departments', departments.join(', ')],
             ['Business Owners', owners.join(', ')]
@@ -981,7 +981,7 @@ function renderVendor360(vendorName, container) {
                 ${vendorAlerts.length ? vendorAlerts.map(a => `
                     <div style="background: #f9fafb; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.5rem;">
                         <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-                            <span style="width: 8px; height: 8px; border-radius: 50%; background: #ea580c; flex-shrink: 0;"></span>
+                            <span style="width: 8px; height: 8px; border-radius: 50%; background: #0052B3; flex-shrink: 0;"></span>
                             <span style="font-weight: 600; font-size: 0.85rem;">${a.title}</span>
                         </div>
                         <div style="font-size: 0.78rem; color: var(--text-muted); padding-left: 1.1rem;">${a.desc}</div>
@@ -992,7 +992,7 @@ function renderVendor360(vendorName, container) {
                 <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
                     <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem;">Primary Contact</div>
                     <div style="font-weight: 600; font-size: 0.9rem;">${contact.contact}</div>
-                    <a href="mailto:${contact.email}" style="font-size: 0.82rem; color: #ea580c; text-decoration: none;">${contact.email}</a>
+                    <a href="mailto:${contact.email}" style="font-size: 0.82rem; color: #0052B3; text-decoration: none;">${contact.email}</a>
                 </div>` : ''}
             </div>
         </div>
@@ -1014,11 +1014,11 @@ function renderVendor360(vendorName, container) {
                     labels: qLabels,
                     datasets: [{
                         data: qValues,
-                        borderColor: '#ea580c',
-                        backgroundColor: 'rgba(234,88,12,0.08)',
+                        borderColor: '#0052B3',
+                        backgroundColor: 'rgba(0,82,179,0.08)',
                         fill: true,
                         tension: 0.3,
-                        pointBackgroundColor: '#ea580c',
+                        pointBackgroundColor: '#0052B3',
                         pointRadius: 5,
                         pointHoverRadius: 7,
                         borderWidth: 2
@@ -1066,7 +1066,7 @@ function renderVendor360(vendorName, container) {
                         {
                             label: 'Invoiced',
                             data: invoicedValues,
-                            backgroundColor: '#ea580c',
+                            backgroundColor: '#0052B3',
                             borderRadius: { topLeft: 0, topRight: 0, bottomLeft: 4, bottomRight: 4 },
                             barPercentage: 0.6
                         },
@@ -1175,7 +1175,7 @@ function renderContractDetails(contractId, container) {
                 </div>
                 <div style="text-align: right;">
                     <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Total Value</div>
-                    <div style="font-size: 2rem; font-weight: 700; color: #ea580c;">$${(contract.value / 1000000).toFixed(1)}M</div>
+                    <div style="font-size: 2rem; font-weight: 700; color: #0052B3;">$${(contract.value / 1000000).toFixed(1)}M</div>
                 </div>
             </div>
             
@@ -1184,7 +1184,7 @@ function renderContractDetails(contractId, container) {
                 <span>${contract.budgetUtilized || Math.round((contract.value - contract.remaining) / contract.value * 100)}% spent &mdash; $${(contract.remaining >= 1000000 ? (contract.remaining / 1000000).toFixed(1) + 'M' : (contract.remaining / 1000).toFixed(0) + 'K')} remaining</span>
             </div>
             <div style="height: 12px; background: var(--bg-color); border-radius: 6px; overflow: hidden; margin-bottom: 1.5rem;">
-                <div style="height: 100%; width: ${contract.budgetUtilized || Math.round((contract.value - contract.remaining) / contract.value * 100)}%; background: #ea580c; border-radius: 6px;"></div>
+                <div style="height: 100%; width: ${contract.budgetUtilized || Math.round((contract.value - contract.remaining) / contract.value * 100)}%; background: #0052B3; border-radius: 6px;"></div>
             </div>
             
             <div style="display: flex; gap: 3rem; font-size: 0.85rem; font-weight: 600;">
@@ -1291,7 +1291,7 @@ function renderContractDetails(contractId, container) {
                      <i class="fa-regular fa-envelope"></i>
                      <div class="detail-item-content">
                          <span class="detail-label">Email</span>
-                         <span class="detail-value" style="color: #f59e0b;">${contract.vendorContact ? contract.vendorContact.email : 'contact@vendor.com'}</span>
+                         <span class="detail-value" style="color: #0052B3;">${contract.vendorContact ? contract.vendorContact.email : 'contact@vendor.com'}</span>
                      </div>
                 </div>
                  <div class="detail-item">
@@ -1309,7 +1309,7 @@ function renderContractDetails(contractId, container) {
              <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 0.75rem;">
                   <span>33 fields extracted</span>
                   <span style="color: #16a34a;"><i class="fa-regular fa-circle"></i> 19</span>
-                  <span style="color: #ea580c;"><i class="fa-solid fa-triangle-exclamation"></i> 11</span>
+                  <span style="color: #0052B3;"><i class="fa-solid fa-triangle-exclamation"></i> 11</span>
                   <span style="color: #dc2626;"><i class="fa-solid fa-circle-exclamation"></i> 3</span>
              </div>
         </div>
@@ -1394,20 +1394,20 @@ function renderInvoices() {
 
         const rows = filtered.map(inv => `
             <tr>
-                <td style="color: #f97316; font-weight: 500; font-size: 0.82rem;">${inv.id}</td>
+                <td style="color: #1F6ED4; font-weight: 500; font-size: 0.82rem;">${inv.id}</td>
                 <td style="font-weight: 500;">${inv.vendor}</td>
                 <td style="font-weight: 600; color: var(--primary-color);">${fmtAmt(inv.amount)}</td>
                 <td style="font-size: 0.85rem;">${inv.date}</td>
                 <td>
-                    <span style="background: ${inv.quarter === 'Q1' ? '#fef3c7' : inv.quarter === 'Q2' ? '#fef3c7' : inv.quarter === 'Q3' ? '#dcfce7' : '#f3e8ff'}; color: ${inv.quarter === 'Q1' ? '#1d4ed8' : inv.quarter === 'Q2' ? '#b45309' : inv.quarter === 'Q3' ? '#15803d' : '#7e22ce'}; padding: 2px 8px; border-radius: 10px; font-size: 0.78rem; font-weight: 600;">${inv.quarter} ${inv.year}</span>
+                    <span style="background: ${inv.quarter === 'Q1' ? '#DCEBFF' : inv.quarter === 'Q2' ? '#DCEBFF' : inv.quarter === 'Q3' ? '#dcfce7' : '#f3e8ff'}; color: ${inv.quarter === 'Q1' ? '#1d4ed8' : inv.quarter === 'Q2' ? '#174AAB' : inv.quarter === 'Q3' ? '#15803d' : '#7e22ce'}; padding: 2px 8px; border-radius: 10px; font-size: 0.78rem; font-weight: 600;">${inv.quarter} ${inv.year}</span>
                 </td>
                 <td>
-                    <span style="background: ${inv.category === 'Data' ? '#fef3c7' : inv.category === 'Services' ? '#ede9fe' : inv.category === 'AI Tools' ? '#d1fae5' : inv.category === 'Platforms' ? '#e0f2fe' : '#f5f5f5'}; color: ${inv.category === 'Data' ? '#1e40af' : inv.category === 'Services' ? '#5b21b6' : inv.category === 'AI Tools' ? '#065f46' : inv.category === 'Platforms' ? '#0369a1' : '#374151'}; padding: 2px 10px; border-radius: 10px; font-size: 0.78rem; font-weight: 600;">${inv.category}</span>
+                    <span style="background: ${inv.category === 'Data' ? '#DCEBFF' : inv.category === 'Services' ? '#ede9fe' : inv.category === 'AI Tools' ? '#d1fae5' : inv.category === 'Platforms' ? '#e0f2fe' : '#f5f5f5'}; color: ${inv.category === 'Data' ? '#1e40af' : inv.category === 'Services' ? '#5b21b6' : inv.category === 'AI Tools' ? '#065f46' : inv.category === 'Platforms' ? '#0369a1' : '#374151'}; padding: 2px 10px; border-radius: 10px; font-size: 0.78rem; font-weight: 600;">${inv.category}</span>
                 </td>
-                <td style="font-size: 0.82rem; color: ${inv.contract ? '#f97316' : 'var(--text-muted)'};">
+                <td style="font-size: 0.82rem; color: ${inv.contract ? '#1F6ED4' : 'var(--text-muted)'};">
                     ${inv.contract ? `${inv.contract} — <span style="color:var(--text-main); font-weight:500;">${inv.contractName}</span>` : '<span style="color:var(--text-muted)">—</span>'}
                 </td>
-                <td>${inv.flag === 'unlinked' ? '<span style="background:#fff7ed; color:#dc2626; font-size:0.75rem; font-weight:600; padding:2px 8px; border-radius:8px;"><i class="fa-solid fa-triangle-exclamation" style="font-size:0.6rem; margin-right:2px;"></i> Unlinked</span>' : '<span style="color:var(--text-muted);">—</span>'}</td>
+                <td>${inv.flag === 'unlinked' ? '<span style="background:#EAF3FF; color:#dc2626; font-size:0.75rem; font-weight:600; padding:2px 8px; border-radius:8px;"><i class="fa-solid fa-triangle-exclamation" style="font-size:0.6rem; margin-right:2px;"></i> Unlinked</span>' : '<span style="color:var(--text-muted);">—</span>'}</td>
             </tr>
         `).join('');
 
@@ -1471,7 +1471,7 @@ function renderInvoices() {
 
         // Stacked bar chart
         const cats = ['Data', 'Services', 'AI Tools', 'Platforms', 'Other'];
-        const catColors = { 'Data': '#f59e0b', 'Services': '#a855f7', 'AI Tools': '#f59e0b', 'Platforms': '#22c55e', 'Other': '#ef4444' };
+        const catColors = { 'Data': '#0052B3', 'Services': '#a855f7', 'AI Tools': '#0052B3', 'Platforms': '#22c55e', 'Other': '#ef4444' };
         const maxQSpend = Math.max(...qSummary.map(({ q }) => {
             return cats.reduce((s, c) => s + qsInvoices.filter(i => getQuarter(i) === q && i.category === c).reduce((a, b) => a + b.amount, 0), 0);
         }), 1);
@@ -1516,7 +1516,7 @@ function renderInvoices() {
                 <td style="color: var(--text-muted); font-weight: 600;">${invCountMap[vendor]}</td>
             </tr>`).join('');
 
-        const toggleBg = qsUseServicePeriod ? '#ea580c' : '#e5e7eb';
+        const toggleBg = qsUseServicePeriod ? '#0052B3' : '#e5e7eb';
         const togglePos = qsUseServicePeriod ? 'right: 2px' : 'left: 2px';
         const toggleColor = qsUseServicePeriod ? 'white' : 'var(--text-muted)';
 
@@ -1555,9 +1555,9 @@ function renderInvoices() {
                     <div class="kpi-subtext" style="color:#ef4444;">Needs linking</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-header"><span class="kpi-title">Out-of-Term Amount</span><div class="kpi-icon orange" style="background:#fef3c7;color:#d97706;"><i class="fa-solid fa-triangle-exclamation"></i></div></div>
+                    <div class="kpi-header"><span class="kpi-title">Out-of-Term Amount</span><div class="kpi-icon orange" style="background:#DCEBFF;color:#1E5CC4;"><i class="fa-solid fa-triangle-exclamation"></i></div></div>
                     <div class="kpi-value" style="font-size: 1.6rem;">${fmtAmt(outOfTerm)}</div>
-                    <div class="kpi-subtext" style="color:#d97706;">Review needed</div>
+                    <div class="kpi-subtext" style="color:#1E5CC4;">Review needed</div>
                 </div>
             </div>
 
@@ -1603,7 +1603,7 @@ function renderInvoices() {
         const rows = cats.map(cat => {
             const remaining = cat.budget - cat.spendYTD;
             const burn = cat.budget > 0 ? ((cat.spendYTD / cat.budget) * 100).toFixed(1) : '0.0';
-            const barColor = parseFloat(burn) > 75 ? '#ef4444' : parseFloat(burn) > 50 ? '#f59e0b' : '#22c55e';
+            const barColor = parseFloat(burn) > 75 ? '#ef4444' : parseFloat(burn) > 50 ? '#0052B3' : '#22c55e';
             const barW = Math.min(parseFloat(burn), 100);
             return `
             <tr>
@@ -1641,13 +1641,13 @@ function renderInvoices() {
                     <span>${burnPct}%</span>
                 </div>
                 <div style="height: 12px; background: #e5e7eb; border-radius: 6px; overflow: hidden;">
-                    <div style="height: 100%; width: ${burnPct}%; background: #ea580c; border-radius: 6px;"></div>
+                    <div style="height: 100%; width: ${burnPct}%; background: #0052B3; border-radius: 6px;"></div>
                 </div>
             </div>
 
-            <div style="background: #fff8ed; border: 1px solid #fdba74; border-radius: var(--radius-md); padding: 0.9rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
-                <i class="fa-solid fa-triangle-exclamation" style="color: #d97706;"></i>
-                <span style="font-size: 0.87rem; color: #ea580c; font-weight: 500;">1 unlinked invoice(s) — may affect accuracy</span>
+            <div style="background: #EEF5FF; border: 1px solid #7FB0F8; border-radius: var(--radius-md); padding: 0.9rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fa-solid fa-triangle-exclamation" style="color: #1E5CC4;"></i>
+                <span style="font-size: 0.87rem; color: #0052B3; font-weight: 500;">1 unlinked invoice(s) — may affect accuracy</span>
             </div>
 
             <div class="card">
@@ -1681,7 +1681,7 @@ function renderInvoices() {
                     </div>
                     <div style="margin-bottom: 1rem;">
                         <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Year</label>
-                        <input type="number" value="${budget.year}" style="width: 100%; padding: 0.65rem; border: 2px solid #ea580c; border-radius: var(--radius-md); font-family: var(--font-family); font-size: 0.9rem; outline: none;">
+                        <input type="number" value="${budget.year}" style="width: 100%; padding: 0.65rem; border: 2px solid #0052B3; border-radius: var(--radius-md); font-family: var(--font-family); font-size: 0.9rem; outline: none;">
                     </div>
                     ${cats.map(c => `
                     <div style="display: flex; align-items: center; margin-bottom: 0.85rem; gap: 1rem;">
@@ -1689,7 +1689,7 @@ function renderInvoices() {
                         <input type="number" value="${c.budget}" style="flex: 1; padding: 0.65rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-family: var(--font-family); font-size: 0.9rem; outline: none;">
                     </div>`).join('')}
                     <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Total: ${fmtAmt(totalBudget)}</div>
-                    <button style="width: 100%; background: #ea580c; color: white; border: none; padding: 0.9rem; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; font-family: var(--font-family); font-size: 0.95rem;">
+                    <button style="width: 100%; background: #0052B3; color: white; border: none; padding: 0.9rem; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; font-family: var(--font-family); font-size: 0.95rem;">
                         Save Budget
                     </button>
                 </div>
@@ -1708,7 +1708,7 @@ function renderInvoices() {
                 <h1>Invoices &amp; Spend</h1>
                 <p>Upload invoices, track quarterly spend, and monitor budget consumption</p>
             </div>
-            ${invoicesActiveTab === 'invoices' ? `<button id="upload-inv-btn" style="background: #ea580c; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-family);"><i class="fa-solid fa-plus"></i> Upload Invoice</button>` : ''}
+            ${invoicesActiveTab === 'invoices' ? `<button id="upload-inv-btn" style="background: #0052B3; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-family);"><i class="fa-solid fa-plus"></i> Upload Invoice</button>` : ''}
         </div>
 
         <div style="display: inline-flex; gap: 0; margin-bottom: 1.5rem; background: #f1f5f9; border-radius: 10px; padding: 4px; border: 1px solid var(--border-color);">
@@ -1912,8 +1912,8 @@ function renderIntelligence() {
 
     // ---- SAAS CARD BUILDER ----
     const renderSaasCard = (c) => {
-        const riskColor = c.risk === 'Low' ? '#22c55e' : c.risk === 'Medium' ? '#f59e0b' : '#ef4444';
-        const barColor = c.utilPct > 85 ? '#22c55e' : '#ea580c';
+        const riskColor = c.risk === 'Low' ? '#22c55e' : c.risk === 'Medium' ? '#0052B3' : '#ef4444';
+        const barColor = c.utilPct > 85 ? '#22c55e' : '#0052B3';
         return `
         <div class="card" style="border-top: 3px solid ${barColor}; margin-bottom: 0;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
@@ -1959,29 +1959,29 @@ function renderIntelligence() {
             <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1.1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem;">
                 <span style="color: var(--text-muted);"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 0.4rem;"></i>Reduce from ${c.totalLicenses} → <strong>${c.recommendedTarget} licenses</strong></span>
                 <span style="color: var(--text-muted);">(peak + ${c.peakBuffer} buffer)</span>
-                <span style="font-weight: 700; color: #ea580c;">${c.confidence}% conf.</span>
+                <span style="font-weight: 700; color: #0052B3;">${c.confidence}% conf.</span>
             </div>
 
-            <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 1rem;">
+            <div style="background: #F3F8FF; border: 1px solid #DCEBFF; border-radius: 8px; padding: 1rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                    <span style="font-size: 0.8rem; font-weight: 700; color: #ea580c; display: flex; align-items: center; gap: 0.4rem;"><i class="fa-regular fa-file-lines"></i> DECISION SUMMARY</span>
-                    <span style="font-size: 0.72rem; font-weight: 700; color: #ea580c;"><i class="fa-solid fa-sparkles" style="font-size: 0.6rem;"></i> ${c.confidence}% confidence</span>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: #0052B3; display: flex; align-items: center; gap: 0.4rem;"><i class="fa-regular fa-file-lines"></i> DECISION SUMMARY</span>
+                    <span style="font-size: 0.72rem; font-weight: 700; color: #0052B3;"><i class="fa-solid fa-sparkles" style="font-size: 0.6rem;"></i> ${c.confidence}% confidence</span>
                 </div>
                 <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #b91c1c;">PROBLEM:</strong> ${c.summary.problem}</div>
                 <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #4338ca;">EVIDENCE:</strong> ${c.summary.evidence}</div>
                 <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #15803d;">FINANCIAL IMPACT:</strong> ${c.summary.financial}</div>
-                <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #d97706;">RISK IF ACTION TAKEN:</strong> ${c.summary.riskNote}</div>
-                <div style="font-size: 0.8rem;"><strong style="color: #ea580c;">RECOMMENDATION:</strong> <span style="color: #c2410c; font-weight: 500;">${c.summary.recommendation}</span></div>
+                <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #1E5CC4;">RISK IF ACTION TAKEN:</strong> ${c.summary.riskNote}</div>
+                <div style="font-size: 0.8rem;"><strong style="color: #0052B3;">RECOMMENDATION:</strong> <span style="color: #16479F; font-weight: 500;">${c.summary.recommendation}</span></div>
             </div>
         </div>`;
     };
 
     // ---- DATA SOURCE CARD BUILDER ----
     const renderDataCard = (c) => {
-        const scoreColor = c.score >= 80 ? '#22c55e' : c.score >= 60 ? '#f59e0b' : '#ef4444';
-        const riskBadge = c.riskLabel ? `<span style="background: ${c.riskLabel.includes('High') ? '#fff7ed' : '#fef3c7'}; color: ${c.riskLabel.includes('High') ? '#dc2626' : '#b45309'}; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-left: 0.5rem;">${c.riskLabel}</span>` : '';
-        const dormantPctColor = c.dormant.pct > 30 ? '#ea580c' : '#f59e0b';
-        const redColor = c.redundancy.detected ? '#ea580c' : 'var(--text-muted)';
+        const scoreColor = c.score >= 80 ? '#22c55e' : c.score >= 60 ? '#0052B3' : '#ef4444';
+        const riskBadge = c.riskLabel ? `<span style="background: ${c.riskLabel.includes('High') ? '#EAF3FF' : '#DCEBFF'}; color: ${c.riskLabel.includes('High') ? '#dc2626' : '#174AAB'}; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; margin-left: 0.5rem;">${c.riskLabel}</span>` : '';
+        const dormantPctColor = c.dormant.pct > 30 ? '#0052B3' : '#0052B3';
+        const redColor = c.redundancy.detected ? '#0052B3' : 'var(--text-muted)';
 
         const indicationRows = c.indications.map(ind => {
             const statusColor = ind.status === 'Active' ? '#22c55e' : '#9ca3af';
@@ -1999,7 +1999,7 @@ function renderIntelligence() {
 
         const tagHtml = c.tags.map(t => {
             const isOrange = t.includes('cost') || t.includes('overlap') || t.includes('dormant');
-            return `<span style="background: ${isOrange ? '#fff7ed' : '#f3f4f6'}; color: ${isOrange ? '#c2410c' : '#6b7280'}; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 8px; display: inline-flex; align-items: center; gap: 3px;"><i class="fa-solid fa-triangle-exclamation" style="font-size: 0.55rem;"></i> ${t}</span>`;
+            return `<span style="background: ${isOrange ? '#EAF3FF' : '#f3f4f6'}; color: ${isOrange ? '#16479F' : '#6b7280'}; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 8px; display: inline-flex; align-items: center; gap: 3px;"><i class="fa-solid fa-triangle-exclamation" style="font-size: 0.55rem;"></i> ${t}</span>`;
         }).join('');
 
         return `
@@ -2069,8 +2069,8 @@ function renderIntelligence() {
                 <div style="background: var(--bg-color); border-radius: 8px; padding: 0.75rem;">
                     <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Redundancy Analysis</div>
                     ${c.redundancy.detected
-                ? `<div style="font-size: 0.8rem; font-weight: 700; color: #ea580c; margin-bottom: 0.25rem;">${c.redundancy.note.split('.')[0]}</div>
-                           <div style="font-size: 0.75rem; color: #ea580c; font-weight: 600;">${c.redundancy.note.split('.')[1] || ''}</div>`
+                ? `<div style="font-size: 0.8rem; font-weight: 700; color: #0052B3; margin-bottom: 0.25rem;">${c.redundancy.note.split('.')[0]}</div>
+                           <div style="font-size: 0.75rem; color: #0052B3; font-weight: 600;">${c.redundancy.note.split('.')[1] || ''}</div>`
                 : `<div style="font-size: 0.8rem; color: var(--text-muted);">${c.redundancy.note}</div>`
             }
                 </div>
@@ -2078,16 +2078,16 @@ function renderIntelligence() {
 
             ${c.tags.length > 0 ? `<div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">${tagHtml}</div>` : ''}
 
-            <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 1rem;">
+            <div style="background: #F3F8FF; border: 1px solid #DCEBFF; border-radius: 8px; padding: 1rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                    <span style="font-size: 0.8rem; font-weight: 700; color: #ea580c; display: flex; align-items: center; gap: 0.4rem;"><i class="fa-regular fa-file-lines"></i> DECISION SUMMARY</span>
-                    <span style="font-size: 0.72rem; font-weight: 700; color: #ea580c;"><i class="fa-solid fa-sparkles" style="font-size: 0.6rem;"></i> ${c.summary.confidence}% confidence</span>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: #0052B3; display: flex; align-items: center; gap: 0.4rem;"><i class="fa-regular fa-file-lines"></i> DECISION SUMMARY</span>
+                    <span style="font-size: 0.72rem; font-weight: 700; color: #0052B3;"><i class="fa-solid fa-sparkles" style="font-size: 0.6rem;"></i> ${c.summary.confidence}% confidence</span>
                 </div>
                 <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #b91c1c;">PROBLEM:</strong> ${c.summary.problem}</div>
                 <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #4338ca;">EVIDENCE:</strong> ${c.summary.evidence}</div>
                 <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #15803d;">FINANCIAL IMPACT:</strong> ${c.summary.financial}</div>
-                <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #d97706;">RISK IF ACTION TAKEN:</strong> ${c.summary.riskNote}</div>
-                <div style="font-size: 0.8rem;"><strong style="color: #ea580c;">RECOMMENDATION:</strong> ${c.summary.recommendation}</div>
+                <div style="font-size: 0.8rem; margin-bottom: 0.5rem;"><strong style="color: #1E5CC4;">RISK IF ACTION TAKEN:</strong> ${c.summary.riskNote}</div>
+                <div style="font-size: 0.8rem;"><strong style="color: #0052B3;">RECOMMENDATION:</strong> ${c.summary.recommendation}</div>
             </div>
         </div>`;
     };
@@ -2101,7 +2101,7 @@ function renderIntelligence() {
                 <h1>Contract &amp; Spend Intelligence</h1>
                 <p>Defensible optimization analysis with transparent methodology and evidence</p>
             </div>
-            <button style="background: #fffbeb; color: #ea580c; border: 1px solid #fcd34d; padding: 0.65rem 1.2rem; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-family); font-size: 0.88rem;">
+            <button style="background: #F3F8FF; color: #0052B3; border: 1px solid #9EC5FF; padding: 0.65rem 1.2rem; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-family); font-size: 0.88rem;">
                 <i class="fa-solid fa-wand-magic-sparkles"></i> Evidence-Based Analysis
             </button>
         </div>
@@ -2130,13 +2130,13 @@ function renderIntelligence() {
         </div>
 
         <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0;">
-            <button class="si-tab-btn" data-tab="saas" style="padding: 0.65rem 1.1rem; border: none; border-bottom: 2px solid ${siActiveTab === 'saas' ? '#ea580c' : 'transparent'}; background: transparent; font-family: var(--font-family); cursor: pointer; font-size: 0.88rem; font-weight: ${siActiveTab === 'saas' ? '700' : '500'}; color: ${siActiveTab === 'saas' ? '#ea580c' : 'var(--text-muted)'}; display: flex; align-items: center; gap: 0.5rem; margin-bottom: -2px;">
+            <button class="si-tab-btn" data-tab="saas" style="padding: 0.65rem 1.1rem; border: none; border-bottom: 2px solid ${siActiveTab === 'saas' ? '#0052B3' : 'transparent'}; background: transparent; font-family: var(--font-family); cursor: pointer; font-size: 0.88rem; font-weight: ${siActiveTab === 'saas' ? '700' : '500'}; color: ${siActiveTab === 'saas' ? '#0052B3' : 'var(--text-muted)'}; display: flex; align-items: center; gap: 0.5rem; margin-bottom: -2px;">
                 <i class="fa-regular fa-message"></i> SaaS License Optimization
-                <span style="background: ${siActiveTab === 'saas' ? '#ea580c' : '#e5e7eb'}; color: ${siActiveTab === 'saas' ? 'white' : 'var(--text-muted)'}; border-radius: 10px; padding: 1px 7px; font-size: 0.72rem; font-weight: 700;">${saasContracts.length}</span>
+                <span style="background: ${siActiveTab === 'saas' ? '#0052B3' : '#e5e7eb'}; color: ${siActiveTab === 'saas' ? 'white' : 'var(--text-muted)'}; border-radius: 10px; padding: 1px 7px; font-size: 0.72rem; font-weight: 700;">${saasContracts.length}</span>
             </button>
-            <button class="si-tab-btn" data-tab="data" style="padding: 0.65rem 1.1rem; border: none; border-bottom: 2px solid ${siActiveTab === 'data' ? '#ea580c' : 'transparent'}; background: transparent; font-family: var(--font-family); cursor: pointer; font-size: 0.88rem; font-weight: ${siActiveTab === 'data' ? '700' : '500'}; color: ${siActiveTab === 'data' ? '#ea580c' : 'var(--text-muted)'}; display: flex; align-items: center; gap: 0.5rem; margin-bottom: -2px;">
+            <button class="si-tab-btn" data-tab="data" style="padding: 0.65rem 1.1rem; border: none; border-bottom: 2px solid ${siActiveTab === 'data' ? '#0052B3' : 'transparent'}; background: transparent; font-family: var(--font-family); cursor: pointer; font-size: 0.88rem; font-weight: ${siActiveTab === 'data' ? '700' : '500'}; color: ${siActiveTab === 'data' ? '#0052B3' : 'var(--text-muted)'}; display: flex; align-items: center; gap: 0.5rem; margin-bottom: -2px;">
                 <i class="fa-solid fa-database"></i> Data Source Value Realization
-                <span style="background: ${siActiveTab === 'data' ? '#ea580c' : '#e5e7eb'}; color: ${siActiveTab === 'data' ? 'white' : 'var(--text-muted)'}; border-radius: 10px; padding: 1px 7px; font-size: 0.72rem; font-weight: 700;">${dataContracts.length}</span>
+                <span style="background: ${siActiveTab === 'data' ? '#0052B3' : '#e5e7eb'}; color: ${siActiveTab === 'data' ? 'white' : 'var(--text-muted)'}; border-radius: 10px; padding: 1px 7px; font-size: 0.72rem; font-weight: 700;">${dataContracts.length}</span>
             </button>
         </div>
 
@@ -2259,7 +2259,7 @@ const alertsData = [
 
 function renderAlerts() {
     const container = document.getElementById('view-container');
-    const severityColor = { critical: '#dc2626', high: '#ea580c', medium: '#d97706', low: '#6b7280' };
+    const severityColor = { critical: '#dc2626', high: '#ea580c', medium: '#d97706', low: '#64748b' };
     const severityBg = { critical: '#fee2e2', high: '#fff7ed', medium: '#fffbeb', low: '#f8fafc' };
 
 
@@ -2305,9 +2305,8 @@ function renderAlerts() {
 
 function renderAlertContractDetail(a) {
     const c = a.contractDetail;
-    const statusColor = c.status === 'Active' ? '#22c55e' : c.status === 'Expiring' ? '#ea580c' : '#6b7280';
-    const statusBg = c.status === 'Active' ? '#dcfce7' : c.status === 'Expiring' ? '#fff7ed' : '#f3f4f6';
-    const barColor = c.budgetPct > 80 ? '#ea580c' : '#22c55e';
+    const statusBg = c.status === 'Active' ? '#dcfce7' : c.status === 'Expiring' ? '#EAF3FF' : c.status === 'Medium' ? '#fff7ed' : '#f3f4f6';
+    const barColor = c.budgetPct > 80 ? '#0052B3' : '#22c55e';
     const container = document.getElementById('view-container');
 
     container.innerHTML = `
@@ -2329,7 +2328,7 @@ function renderAlertContractDetail(a) {
                 </div>
                 <div style="text-align: right; flex-shrink: 0;">
                     <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem;">Total Value</div>
-                    <div style="font-size: 1.8rem; font-weight: 800; color: #ea580c;">${c.totalValue}</div>
+                    <div style="font-size: 1.8rem; font-weight: 800; color: #0052B3;">${c.totalValue}</div>
                 </div>
             </div>
 
@@ -2343,7 +2342,7 @@ function renderAlertContractDetail(a) {
 
             <div style="display: flex; gap: 3rem; font-size: 0.85rem;">
                 <div><span style="color: var(--text-muted); font-size: 0.75rem;">Start</span><div style="font-weight: 700; margin-top: 0.15rem;">${c.start}</div></div>
-                <div><span style="color: var(--text-muted); font-size: 0.75rem;">End</span><div style="font-weight: 700; margin-top: 0.15rem; color: ${c.status === 'Expiring' ? '#ea580c' : 'var(--primary-color)'};">${c.end}</div></div>
+                <div><span style="color: var(--text-muted); font-size: 0.75rem;">End</span><div style="font-weight: 700; margin-top: 0.15rem; color: ${c.status === 'Expiring' ? '#0052B3' : 'var(--primary-color)'};">${c.end}</div></div>
             </div>
         </div>
 
@@ -2359,7 +2358,7 @@ function renderAlertContractDetail(a) {
         ].map(([icon, label, val]) => `
                     <div style="margin-bottom: 0.85rem;">
                         <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.1rem;">
-                            <i class="fa-regular ${icon}" style="color: #ea580c; font-size: 0.65rem;"></i> ${label}
+                            <i class="fa-regular ${icon}" style="color: #0052B3; font-size: 0.65rem;"></i> ${label}
                         </div>
                         <div style="font-size: 0.88rem; font-weight: 600; color: var(--primary-color);">${val}</div>
                     </div>
@@ -2375,7 +2374,7 @@ function renderAlertContractDetail(a) {
         ].map(([icon, label, val]) => `
                     <div style="margin-bottom: 0.85rem;">
                         <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.1rem;">
-                            <i class="fa-regular ${icon}" style="color: #ea580c; font-size: 0.65rem;"></i> ${label}
+                            <i class="fa-regular ${icon}" style="color: #0052B3; font-size: 0.65rem;"></i> ${label}
                         </div>
                         <div style="font-size: 0.88rem; font-weight: 600; color: var(--primary-color);">${val}</div>
                     </div>
@@ -2391,9 +2390,9 @@ function renderAlertContractDetail(a) {
         ].map(([icon, label, val]) => `
                     <div style="margin-bottom: 0.85rem;">
                         <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.1rem;">
-                            <i class="fa-regular ${icon}" style="color: #ea580c; font-size: 0.65rem;"></i> ${label}
+                            <i class="fa-regular ${icon}" style="color: #0052B3; font-size: 0.65rem;"></i> ${label}
                         </div>
-                        <div style="font-size: 0.88rem; font-weight: 600; color: ${label === 'Email' ? '#f97316' : 'var(--primary-color)'};">${val}</div>
+                        <div style="font-size: 0.88rem; font-weight: 600; color: ${label === 'Email' ? '#1F6ED4' : 'var(--primary-color)'};">${val}</div>
                     </div>
                 `).join('')}
             </div>
@@ -2528,10 +2527,10 @@ function appendChatMessage(role, html) {
 
     const avatar = isUser
         ? `<div style="width:28px;height:28px;background:#e5e7eb;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><i class="fa-solid fa-user" style="color:#6b7280;font-size:0.65rem;"></i></div>`
-        : `<div style="width:28px;height:28px;background:linear-gradient(135deg,#ea580c,#f97316);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><i class="fa-solid fa-sparkles" style="color:white;font-size:0.65rem;"></i></div>`;
+        : `<div style="width:28px;height:28px;background:linear-gradient(135deg,#0052B3,#1F6ED4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><i class="fa-solid fa-sparkles" style="color:white;font-size:0.65rem;"></i></div>`;
 
     const bubbleStyle = isUser
-        ? 'background:linear-gradient(135deg,#ea580c,#f97316);color:white;border-radius:12px 12px 2px 12px;'
+        ? 'background:linear-gradient(135deg,#0052B3,#1F6ED4);color:white;border-radius:12px 12px 2px 12px;'
         : 'background:white;border:1px solid #e5e7eb;border-radius:12px 12px 12px 2px;color:#1e293b;box-shadow:0 1px 3px rgba(0,0,0,0.06);';
 
     bubble.innerHTML = `${avatar}<div style="${bubbleStyle} padding:0.65rem 0.85rem; font-size:0.83rem; line-height:1.6; max-width:88%; white-space:pre-wrap;">${html}</div>`;
@@ -2561,7 +2560,7 @@ function initChatbot() {
             if (messages) {
                 messages.innerHTML = `
                     <div class="chat-msg assistant" style="display:flex; gap:0.5rem; align-items:flex-start;">
-                        <div style="width:28px; height:28px; background:linear-gradient(135deg,#ea580c,#f97316); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
+                        <div style="width:28px; height:28px; background:linear-gradient(135deg,#0052B3,#1F6ED4); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
                             <i class="fa-solid fa-sparkles" style="color:white; font-size:0.65rem;"></i>
                         </div>
                         <div style="background:white; border:1px solid #e5e7eb; border-radius:12px 12px 12px 2px; padding:0.65rem 0.85rem; font-size:0.83rem; line-height:1.55; color:#1e293b; max-width:88%; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
@@ -2639,6 +2638,8 @@ function initChatbot() {
         input.style.height = Math.min(input.scrollHeight, 100) + 'px';
     });
 }
+
+
 
 
 

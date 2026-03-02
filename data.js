@@ -35,9 +35,11 @@ async function loadData() {
         "alerts": [
             { "title": "Deloitte contract expiring", "desc": "CTR-003 expires Feb 28, 2026 — 4 days remaining", "severity": "critical", "badge": "CRITICAL" },
             { "title": "Optum data license expiring", "desc": "CTR-009 expires Mar 31, 2026 — 35 days remaining", "severity": "orange", "badge": "HIGH" },
-            { "title": "Snowflake contract ending", "desc": "CTR-002 expires May 31, 2026 — manual renewal required, 60 day notice window approaching", "severity": "gray", "badge": "MEDIUM" },
-            { "title": "IQVIA Q1 payment due", "desc": "CTR-001 quarterly payment of $200,000 due Mar 15, 2026", "severity": "gray", "badge": "MEDIUM" },
-            { "title": "AWS monthly invoice", "desc": "CTR-005 estimated $89,000 invoice processing Mar 1, 2026", "severity": "low", "badge": "LOW" }
+            { "title": "Snowflake contract ending", "desc": "CTR-002 expires May 31, 2026 — manual renewal required, 60 day notice window approaching", "severity": "blue", "badge": "MEDIUM" },
+            { "title": "IQVIA Q1 payment due", "desc": "CTR-001 quarterly payment of $200,000 due Mar 15, 2026", "severity": "blue", "badge": "MEDIUM" },
+            { "title": "AWS monthly invoice", "desc": "CTR-005 estimated $89,000 invoice processing Mar 1, 2026", "severity": "low", "badge": "LOW" },
+            { "title": "Accenture contract pending", "desc": "CTR-010 in draft — awaiting legal review and signatures", "severity": "blue", "badge": "MEDIUM" },
+            { "title": "IQVIA PlanTrak expiring", "desc": "CTR-013 expires Jun 30, 2026 — renewal decision needed", "severity": "orange", "badge": "HIGH" }
         ],
         "recentContracts": [
             { "vendor": "IQVIA", "vendorSub": "Xponent · CTR-001", "type": "Data Source Agreement", "value": "$2.4M", "status": "Active", "date": "2026-12-31" },

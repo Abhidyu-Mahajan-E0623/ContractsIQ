@@ -4,9 +4,9 @@
     /* Navy Blue */
     --primary-light: #1e293b;
     --primary-lighter: #334155;
-    --accent-color: #f59e0b;
+    --accent-color: #0052B3;
     /* Blue Accent */
-    --accent-light: #fff7ed;
+    --accent-light: #EAF3FF;
 
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
@@ -17,7 +17,8 @@
     /* Status Colors */
     --status-active: #22c55e;
     --status-expiring: #f59e0b;
-    --status-draft: #f59e0b;
+    --status-draft: #0052B3;
+    --status-medium: #f59e0b;
     --status-critical: #ef4444;
 
     --sidebar-width: 260px;
@@ -115,10 +116,11 @@ body {
     background-color: var(--accent-light);
     color: var(--primary-color);
     font-weight: 600;
+    border-left: 3px solid var(--accent-color);
 }
 
 .nav-item .badge {
-    background-color: var(--status-expiring);
+    background-color: var(--accent-color);
     color: white;
     font-size: 0.75rem;
     padding: 2px 6px;
@@ -133,7 +135,18 @@ body {
 .ai-powered-box {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    padding: 1rem;
+    padding: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-logo {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: 45px;
+    object-fit: contain;
 }
 
 .ai-label {
@@ -566,6 +579,11 @@ td.value-col {
     color: #d97706;
 }
 
+.status-badge.draft {
+    background: #EAF3FF;
+    color: #0052B3;
+}
+
 /* Placeholders for other views */
 .view-placeholder {
     display: flex;
@@ -736,14 +754,14 @@ td.value-col {
 }
 
 .filter-pill:hover {
-    border-color: #ea580c;
-    color: #ea580c;
+    border-color: #0052B3;
+    color: #0052B3;
 }
 
 .filter-pill.active {
-    background: #fffbeb;
-    color: #ea580c;
-    border-color: #ea580c;
+    background: #F3F8FF;
+    color: #0052B3;
+    border-color: #0052B3;
 }
 
 /* Back Link */
@@ -836,8 +854,8 @@ td.value-col {
 }
 
 .modal-option:hover {
-    border-color: #ea580c;
-    background-color: #fffbeb;
+    border-color: #0052B3;
+    background-color: #F3F8FF;
 }
 
 .modal-option h4 {
