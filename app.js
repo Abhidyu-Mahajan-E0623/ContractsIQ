@@ -2306,6 +2306,7 @@ function renderAlerts() {
 function renderAlertContractDetail(a) {
     const c = a.contractDetail;
     const statusBg = c.status === 'Active' ? '#dcfce7' : c.status === 'Expiring' ? '#EAF3FF' : c.status === 'Medium' ? '#fff7ed' : '#f3f4f6';
+    const statusColor = c.status === 'Active' ? '#16a34a' : c.status === 'Expiring' ? '#0052B3' : c.status === 'Pending' ? '#6b7280' : '#d97706';
     const barColor = c.budgetPct > 80 ? '#0052B3' : '#22c55e';
     const container = document.getElementById('view-container');
 
