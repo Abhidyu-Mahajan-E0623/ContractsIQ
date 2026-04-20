@@ -6,10 +6,10 @@ import os
 # Define the data here
 SYNTHETIC_DATA = {
     "kpis": {
-        "totalContracts": { "value": 13, "active": 8 },
-        "totalCommitted": { "value": "$18.01M", "subtitle": "Across all contracts" },
-        "remainingBudget": { "value": "$10.05M", "percent": "55.79% remaining", "status": "green" },
-        "expiringSoon": { "value": 3, "subtitle": "Within 90 days" }
+        "totalContracts": { "value": 13, "active": 9, "highRisk": 4 },
+        "totalCommitted": { "value": "$18.0M", "subtitle": "Across all contracts" },
+        "expiringSoon": { "value": 3, "subtitle": "Within 90 days" },
+        "autoRenewal": { "value": 1, "subtitle": "1 need action in 15d" }
     },
     "spendByVendor": [
         { "name": "IQVIA", "value": 5130000 },
@@ -51,12 +51,58 @@ SYNTHETIC_DATA = {
         { "vendor": "Snowflake", "vendorSub": "Data Cloud · CTR-002", "type": "Technology / SaaS", "value": "$850K", "status": "Active", "date": "2026-05-31" }
     ],
     "searchSuggestions": [
-        "What is my total budget for the year?",
-        "How much budget is already committed versus still available?",
-        "How much am I spending per vendor?",
-        "How is spend split across cost centers?",
-        "What is my historical spend and engagement with a given vendor over the past 1, 3, or 5 years, especially to support negotiations?"
+        "Show all contracts expiring in the next 90 days",
+        "How much are we spending with IQVIA this year?",
+        "Which contracts belong to the Commercial Analytics team?",
+        "Total committed budget across all data providers"
     ],
+    "cancellationWindow": [
+        {
+            "vendor": "Databricks",
+            "product": "Unity Platform",
+            "contractId": "CTR-008",
+            "cancelBy": "May 1",
+            "noticePeriod": "60-day notice",
+            "value": "$720K",
+            "daysLeft": 15
+        }
+    ],
+    "renewalPipeline": [
+        { "month": "Apr 25", "value": 0, "contracts": 0 },
+        { "month": "May 25", "value": 850000, "contracts": 1 },
+        { "month": "Jun 25", "value": 1530000, "contracts": 2 },
+        { "month": "Jul 25", "value": 1200000, "contracts": 1 },
+        { "month": "Aug 25", "value": 0, "contracts": 0 },
+        { "month": "Sep 25", "value": 0, "contracts": 0 },
+        { "month": "Oct 25", "value": 0, "contracts": 0 },
+        { "month": "Nov 25", "value": 0, "contracts": 0 },
+        { "month": "Dec 25", "value": 0, "contracts": 0 },
+        { "month": "Jan 26", "value": 0, "contracts": 0 },
+        { "month": "Feb 26", "value": 2800000, "contracts": 1 },
+        { "month": "Mar 26", "value": 2600000, "contracts": 2 }
+    ],
+    "riskDistribution": {
+        "low": 4,
+        "medium": 5,
+        "high": 4
+    },
+    "crossContractAnalysis": {
+        "multiVendors": [
+            { "vendor": "IQVIA", "contracts": 4, "totalValue": "$5.1M", "products": ["Xponent", "DDD", "LAAD", "PlanTrak"] }
+        ],
+        "ownerConcentration": [
+            { "name": "Sarah Chen", "contracts": 3, "riskLevel": "high" },
+            { "name": "Laura Hughes", "contracts": 2, "riskLevel": "medium" },
+            { "name": "Emily Watson", "contracts": 2, "riskLevel": "medium" },
+            { "name": "Michael Torres", "contracts": 2, "riskLevel": "medium" },
+            { "name": "Rachel Adams", "contracts": 2, "riskLevel": "medium" }
+        ],
+        "typeDistribution": [
+            { "type": "Technology", "contracts": 4, "totalValue": "$5.3M" },
+            { "type": "Data Source Agreement", "contracts": 6, "totalValue": "$8.4M" },
+            { "type": "Professional Services", "contracts": 3, "totalValue": "$4.3M" }
+        ]
+    },
     "contractsData": [
         { 
             "id": "CTR-001", "vendor": "IQVIA", "product": "Xponent", "type": "Data Source Agreement", "owner": "Sarah Chen", "dept": "Commercial Analytics", "value": 2400000, "remaining": 1600000, "status": "Active", "endDate": "2026-12-31", "startDate": "2024-01-15",

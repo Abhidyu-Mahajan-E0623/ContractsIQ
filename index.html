@@ -40,7 +40,7 @@
                 <li class="nav-item" data-view="alerts">
                     <i class="fa-regular fa-bell"></i>
                     <span>Alerts</span>
-                    <span class="badge" style="background-color: #0052B3;">7</span>
+                    <span class="badge" style="background-color: #0052B3;">3</span>
                 </li>
 
             </ul>
@@ -111,6 +111,171 @@
                             <p>Any contract type not listed above</p>
                         </div>
                         <i class="fa-solid fa-chevron-right" style="color: var(--text-muted);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2: AI Processing Mode & Dropzone -->
+        <div class="modal-overlay" id="upload-step-2-modal">
+            <div class="modal" style="width: 500px;">
+                <div class="modal-header">
+                    <h2 style="display:flex; align-items:center;"><button id="upload-back-1" style="background:none; border:none; color:var(--text-muted); cursor:pointer; margin-right: 0.5rem; display:flex; align-items:center;"><i class="fa-solid fa-arrow-left"></i></button> Upload Contract</h2>
+                    <button class="modal-close" id="close-upload-2-modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body" style="padding-top: 1rem;">
+                    <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.85rem;">
+                        <span style="color: var(--text-muted);">Type:</span> <strong>Data Source Agreement</strong>
+                    </div>
+
+                    <h4 style="margin: 0 0 1rem 0; font-size: 0.95rem;">AI Processing Mode</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <div class="processing-mode-card" style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; cursor: pointer;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: #0052B3; font-weight: 600;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Quick Summary
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">Extract key details (vendor, dates, value, etc.)</div>
+                        </div>
+                        <div class="processing-mode-card active" style="border: 1px solid #ea580c; background: #fffbf5; border-radius: 8px; padding: 1rem; cursor: pointer;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-color); font-weight: 600;">
+                                <i class="fa-solid fa-layer-group" style="color: #0052B3;"></i> Detailed Extraction
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">Full metadata + clause-level breakdown</div>
+                        </div>
+                        <div class="processing-mode-card" style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; cursor: pointer;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: #eab308; font-weight: 600;">
+                                <i class="fa-solid fa-shield-halved"></i> Risk & Insights
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">Highlight risks, missing clauses, obligations</div>
+                        </div>
+                        <div class="processing-mode-card" style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; cursor: pointer;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: #16a34a; font-weight: 600;">
+                                <i class="fa-solid fa-file-contract"></i> Compare with Standard Templates
+                            </div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">Highlight deviations against standard playbooks</div>
+                        </div>
+                    </div>
+
+                    <div id="dummy-upload-zone" style="border: 1px dashed #cbd5e1; border-radius: 12px; padding: 2.5rem 1rem; text-align: center; cursor: pointer; transition: background 0.2s;">
+                        <i class="fa-solid fa-arrow-up-from-bracket" style="font-size: 2rem; color: #94a3b8; margin-bottom: 1rem;"></i>
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Click to upload or drag & drop</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">PDF, DOCX, or scanned images up to 20MB · Mode: <strong>Detailed Extraction</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 3: Extracting Information Spinner -->
+        <div class="modal-overlay" id="upload-step-3-modal">
+            <div class="modal" style="width: 450px;">
+                <div class="modal-header">
+                    <h2>Extracting Information</h2>
+                    <button class="modal-close" id="close-upload-3-modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body" style="padding: 2.5rem 1rem; text-align: center;">
+                    <div class="spinner" style="width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top: 4px solid #ea580c; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem auto;"></div>
+                    <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+                    
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">AI is reading your contract...</h3>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;">Extracting key terms, dates, and financial details</div>
+
+                    <div style="text-align: left; max-width: 250px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div id="parse-step-1" style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--text-muted); opacity: 0.5; transition: opacity 0.3s;"><i class="fa-regular fa-circle-check" style="color: #16a34a;"></i> Parsing document structure</div>
+                        <div id="parse-step-2" style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--text-muted); opacity: 0.5; transition: opacity 0.3s;"><i class="fa-regular fa-circle-check" style="color: #16a34a;"></i> Identifying key clauses</div>
+                        <div id="parse-step-3" style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--text-muted); opacity: 0.5; transition: opacity 0.3s;"><i class="fa-regular fa-circle-check" style="color: #16a34a;"></i> Extracting financial terms</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 4: Review Extracted Data -->
+        <div class="modal-overlay" id="upload-step-4-modal">
+            <div class="modal" style="width: 550px; max-height: 90vh; display: flex; flex-direction: column;">
+                <div class="modal-header">
+                    <h2 style="display:flex; align-items:center;"><button id="upload-back-3" style="background:none; border:none; color:var(--text-muted); cursor:pointer; margin-right: 0.5rem; display:flex; align-items:center;"><i class="fa-solid fa-arrow-left"></i></button> Review Extracted Data</h2>
+                    <button class="modal-close" id="close-upload-4-modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body" style="padding-top: 1rem; overflow-y: auto; padding-bottom: 1.5rem;">
+                    <div style="background: #dcfce7; color: #16a34a; border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-regular fa-circle-check"></i> Successfully extracted 10 fields from PharmaData_MSA_2025.pdf
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">VENDOR NAME</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">PharmaData Inc.</div>
+                            </div>
+                            <span style="background: #dcfce7; color: #16a34a; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">High</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">CONTRACT VALUE</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">$1,250,000</div>
+                            </div>
+                            <span style="background: #dcfce7; color: #16a34a; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">High</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">START DATE</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">2025-04-01</div>
+                            </div>
+                            <span style="background: #dcfce7; color: #16a34a; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">High</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">END DATE</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">2027-03-31</div>
+                            </div>
+                            <span style="background: #dcfce7; color: #16a34a; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">High</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">RENEWAL TERMS</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">Auto-renew, 90 days notice</div>
+                            </div>
+                            <span style="background: #fef3c7; color: #d97706; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">Medium</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">BILLING STRUCTURE</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">Annual Fixed</div>
+                            </div>
+                            <span style="background: #dcfce7; color: #16a34a; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">High</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">BUSINESS OWNER</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">Detected: Sarah Chen</div>
+                            </div>
+                            <span style="background: #fef3c7; color: #d97706; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">Medium</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">DEPARTMENT</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">Commercial Analytics</div>
+                            </div>
+                            <span style="background: #fef3c7; color: #d97706; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">Medium</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">PAYMENT SCHEDULE</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">Quarterly</div>
+                            </div>
+                            <span style="background: #dcfce7; color: #16a34a; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">High</span>
+                        </div>
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">COST CENTER</div>
+                                <div style="font-weight: 500; font-size: 0.95rem; margin-top: 0.2rem;">CC-4200</div>
+                            </div>
+                            <span style="background: #fee2e2; color: #dc2626; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 12px;">Low</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <button id="upload-cancel-btn" style="flex: 1; padding: 0.8rem; border: 1px solid var(--border-color); background: white; border-radius: 8px; font-weight: 600; cursor: pointer;">Cancel</button>
+                        <button id="upload-confirm-btn" style="flex: 1; padding: 0.8rem; border: none; background: #ea580c; color: white; border-radius: 8px; font-weight: 600; cursor: pointer;">Confirm & Save</button>
                     </div>
                 </div>
             </div>
@@ -222,7 +387,7 @@
             }
 
             #chatbot-input:focus {
-                border-color: #ea580c;
+                border-color: #0052B3;
                 box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.12);
             }
 
