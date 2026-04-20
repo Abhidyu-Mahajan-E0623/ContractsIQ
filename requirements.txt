@@ -1,5 +1,2 @@
-# Target Python 3.14+
-python_version >= "3.14"
-
 # Dependencies
 requests>=2.31.0
