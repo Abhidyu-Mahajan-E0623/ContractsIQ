@@ -3275,7 +3275,7 @@ function buildContractSystemPrompt() {
 PORTFOLIO SUMMARY:
   Total Contracts: ${kpis.totalContracts.value} (${kpis.totalContracts.active} active)
   Total Committed Value: ${kpis.totalCommitted.value}
-  Remaining Budget: ${kpis.remainingBudget.value} (${kpis.remainingBudget.percent})
+  Auto-Renewal Upcoming: ${kpis.autoRenewal.value}
   Expiring Within 90 Days: ${kpis.expiringSoon.value}
 
 ACTIVE ALERTS:
@@ -3395,7 +3395,7 @@ function initChatbot() {
     // Inline suggestion chips in welcome message
     messages && messages.querySelectorAll('.chat-suggestion').forEach(chip => {
         chip.addEventListener('click', () => {
-            const text = chip.textContent.replace(/^•\s*/, '').trim();
+            const text = chip.textContent.replace(/^•\s*/, '').replace(/\s+/g, ' ').trim();
             if (input) { input.value = text; }
             sendMessage(text);
         });
